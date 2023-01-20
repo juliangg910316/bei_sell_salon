@@ -31,9 +31,11 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
+  fl_chart: ^0.55.2
   flutter:
     sdk: flutter
   get: ^4.6.5
+  hive: ^2.2.3
   table_calendar: ^3.0.9
 
 dev_dependencies:
