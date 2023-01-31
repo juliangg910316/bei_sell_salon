@@ -78,9 +78,15 @@ class SalonController extends GetxController {
         }
 
       case 'Semana':
+        if (cSemana.isEmpty) {
+          return 'Ultima semana';
+        }
         return 'del ${cSemana[0].createdDate.split('.')[0]}/${Util.getNameMonth(cSemana[0].createdDate.split('.')[1], true)} hasta HOY';
 
       case 'Mes':
+        if (cSemana.isEmpty) {
+          return 'Ultimo mes';
+        }
         return 'del ${cSemana[0].createdDate.split('.')[0]}/${Util.getNameMonth(cSemana[0].createdDate.split('.')[1], true)} hasta HOY';
 
       default:

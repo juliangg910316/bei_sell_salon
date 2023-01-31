@@ -1,8 +1,27 @@
+import 'package:bei_sell/models/costs.dart';
+import 'package:bei_sell/models/fact.dart';
+import 'package:bei_sell/models/product.dart';
+import 'package:bei_sell/models/turn.dart';
 import 'package:bei_sell/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart' as path;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final appDirectory = await path.getApplicationDocumentsDirectory();
+  Hive
+    ..init(appDirectory.path)
+    ..registerAdapter(FactSalonAdapter())
+    ..registerAdapter(ProductAdapter())
+    ..registerAdapter(TurnAdapter());
+
+  await Hive.openBox<FactSalon>('fact_salon');
+  await Hive.openBox<Turn>('turn');
+  await Hive.openBox<CostsSalon>('costs');
+
   runApp(const MyApp());
 }
 
